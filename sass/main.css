@@ -1,1 +1,29 @@
-/*# sourceMappingURL=main.css.map */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main__header {
+  background-color: cyan;
+}
+.main__header .main__header__themeSection {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0.5rem;
+}
+.main__header .main__header__themeSection .main__header__heading {
+  font-size: 1.5rem;
+}
+.main__header .main__header__themeSection .main__header--themeToggle {
+  all: unset;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main__header .main__header__themeSection .main__header--themeToggle .lightMoon {
+  margin-right: 0.5rem;
+}
+.main__header .main__header__themeSection .main__header--themeToggle .darkMoon {
+  display: none;
+}/*# sourceMappingURL=main.css.map */
