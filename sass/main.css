@@ -1,29 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+::-moz-placeholder {
+  color: hsla(0deg, 0%, 52%, 0.5);
+  font-weight: 400;
+}
+
+:-ms-input-placeholder {
+  color: hsla(0deg, 0%, 52%, 0.5);
+  font-weight: 400;
+}
+
+::placeholder {
+  color: hsla(0deg, 0%, 52%, 0.5);
+  font-weight: 400;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
+
 .main__header {
-  background-color: cyan;
+  background-color: hsl(0deg, 0%, 100%);
 }
 .main__header .main__header__themeSection {
   display: flex;
   justify-content: space-between;
-  padding: 2rem 0.5rem;
+  padding: 2rem clamp(1rem, 5vw, 3rem);
+  box-shadow: 0px 15px 10px -15px rgba(173, 167, 167, 0.4);
 }
 .main__header .main__header__themeSection .main__header__heading {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 0.8005475rem + 1.3309vw, 2rem);
 }
 .main__header .main__header__themeSection .main__header--themeToggle {
   all: unset;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 600;
+  font-size: clamp(0.875rem, 0.8333975rem + 0.1849vw, 1rem);
 }
 .main__header .main__header__themeSection .main__header--themeToggle .lightMoon {
   margin-right: 0.5rem;
 }
 .main__header .main__header__themeSection .main__header--themeToggle .darkMoon {
   display: none;
+}
+.main__header .main__header__searchSection {
+  padding: 1rem clamp(1rem, 5vw, 3rem);
+  margin-top: 2rem;
+}
+@media (min-width: 992px) {
+  .main__header .main__header__searchSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.main__header .main__header__searchSection .main__header__inputContainer {
+  width: 100%;
+  height: 50px;
+  padding: 1rem;
+  display: flex;
+  border-radius: 5px;
+  background-color: hsl(0deg, 0%, 100%);
+  box-shadow: 0 0 10px 5px rgba(173, 167, 167, 0.1), 0px 15px 10px -15px rgba(173, 167, 167, 0.3);
+}
+@media (min-width: 992px) {
+  .main__header .main__header__searchSection .main__header__inputContainer {
+    width: 30%;
+  }
+}
+.main__header .main__header__searchSection .main__header__inputContainer form {
+  display: flex;
+}
+.main__header .main__header__searchSection .main__header__inputContainer form #inputCountry {
+  border: none;
+  outline: none;
+  margin-left: 2.5rem;
+  width: calc(100% - 2rem);
+  height: 20px;
+  font-size: clamp(0.875rem, 0.8333975rem + 0.1849vw, 1rem);
+}
+.main__header .main__header__searchSection .main__header__dropdownContainer {
+  width: 210px;
+  font-size: clamp(0.875rem, 0.8333975rem + 0.1849vw, 1rem);
+  margin-top: 3rem;
+}
+@media (min-width: 992px) {
+  .main__header .main__header__searchSection .main__header__dropdownContainer {
+    margin-top: 0rem !important;
+  }
+}
+.main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-btn {
+  all: unset;
+  display: flex;
+  justify-content: space-around;
+  width: calc(100% - 1.6rem);
+  padding: 0.8rem;
+  background-color: hsl(0deg, 0%, 100%);
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 5px rgba(173, 167, 167, 0.1), 0px 15px 10px -15px rgba(173, 167, 167, 0.3);
+  font-weight: 600;
+}
+.main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-btn .arrow {
+  transition: 0.5s;
+}
+.main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 0.3rem;
+  background-color: hsl(0deg, 0%, 100%);
+  list-style-type: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 5px rgba(173, 167, 167, 0.1), 0px 15px 10px -15px rgba(173, 167, 167, 0.3);
+  cursor: pointer;
+  height: 0px;
+  overflow: hidden;
+  transition: 0.5s;
+  padding-block: 0rem;
+}
+.main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-items li {
+  margin-left: 1.5rem;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.dropdown-hide {
+  height: 175px !important;
+  padding-block: 0.7rem !important;
+}
+
+.arrowNotAnimate {
+  transform: rotate(180deg) !important;
 }/*# sourceMappingURL=main.css.map */
