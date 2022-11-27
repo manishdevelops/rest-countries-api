@@ -10,21 +10,21 @@
   <title>Frontend Mentor|Todo app</title>
   <script defer src="/js/index.js"></script>
 </head>
-<body>
+<body class="light-theme">
 <main class="main">
   <div class="main__header">
     <div class="main__header__themeSection">
       <h1 class="main__header__heading">Where in this world?</h1>
       <button class="main__header--themeToggle">
         <box-icon class = "lightMoon" name='moon' animation='tada' ></box-icon>
-        <box-icon class = "darkMoon" name='moon' type='solid' animation='tada' ></box-icon>
+        <!-- <box-icon class = "darkMoon" name='moon' type='solid' animation='tada' ></box-icon> -->
         Dark Mode
       </button>
     </div>
 
     <div class="main__header__searchSection">
       <div class="main__header__inputContainer">
-        <box-icon name='search-alt' animation='flashing' ></box-icon>
+        <box-icon class="searchIcon" name='search-alt' animation='flashing' ></box-icon>
         <form >
           <label for="inputCountry"></label>
           <input type="text" id="inputCountry" name="country" placeholder="Search for a country...">
@@ -33,7 +33,7 @@
       <div class="main__header__dropdownContainer">
         <button class="dropdown-btn">
           Filter by Region
-          <box-icon name='chevrons-down' animation='fade-down' class="arrow"></box-icon>
+          <box-icon class="arrowIcon" name='chevrons-down' animation='fade-down' class="arrow"></box-icon>
         </button>
         <ul class="dropdown-items">
           <li>Africa</li>

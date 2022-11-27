@@ -1,0 +1,91 @@
+@use '_variables' as var;
+
+@mixin animate() {
+  &:active {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (min-width:992px) {
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+@mixin icon_color() {
+  .lightMoon, .searchIcon, .arrowIcon  {
+    fill: white !important;
+  }
+}
+
+@mixin set_themes($Bg-1, $Bg-2) {
+
+  .main__header__themeSection {
+    background-color: $Bg-2;
+  }
+  .main__header__inputContainer {
+    background-color: $Bg-2; 
+  }
+  .dropdown-btn {
+    background-color: $Bg-2 !important; 
+    @include animate();
+  }
+  .dropdown-items {
+    background-color: hsla(0deg, 0%, 100%,.96);
+  }
+  .countryDetails {
+    background-color:$Bg-2;
+  }
+  #inputCountry {
+    background-color: $Bg-2;
+  }
+  .countryContainer {
+    @include animate();
+  }
+ 
+}
+
+.light-theme {
+  @include set_themes(var.$Very-Light-Gray_Light-Mode-Background,
+  var.$White_Dark-Mode-Text-and-Light-Mode-Elements
+  );
+
+  .dropdown-items {
+    background-color: hsla(0deg, 0%, 100%,.96);
+  }
+
+  .main__header__themeSection, .main__header__inputContainer,  .dropdown-btn, .dropdown-items, .countryDetails {
+    box-shadow:  0 0 10px 5px rgba(173, 167, 167,0.1), 0px 15px 10px -15px rgba(173, 167, 167,.3) !important;
+  }
+  ::placeholder {
+    color: hsla(0, 0%, 52%,0.5);
+    font-weight: 400;
+  }
+    background-color: var.$Very-Light-Gray_Light-Mode-Background !important;
+    color: var.$Very-Dark-Blue_Light-Mode-Text;
+}
+
+.dark-theme {
+  @include set_themes(var.$Very-Dark-Blue_Dark-Mode-Background, 
+  var.$Dark-Blue_Dark-Mode-Elements
+  );
+
+    @include icon_color();
+
+  .dropdown-items {
+        background-color: hsl(209, 23%, 22%, .96);
+  }
+
+  .main__header__themeSection, .main__header__inputContainer,  .dropdown-btn, .dropdown-items, .countryDetails {
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.2) !important;
+  }
+  ::placeholder {
+    color: var.$White_Dark-Mode-Text-and-Light-Mode-Elements;
+    font-weight: 400;
+  }
+  background-color:var.$Very-Dark-Blue_Dark-Mode-Background !important;
+  color: var.$White_Dark-Mode-Text-and-Light-Mode-Elements;
+
+}
