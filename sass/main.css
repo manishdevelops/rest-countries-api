@@ -22,6 +22,7 @@
 
 body {
   font-family: "Nunito Sans", sans-serif;
+  background-color: hsl(0deg, 0%, 98%);
 }
 
 .main__header {
@@ -32,6 +33,7 @@ body {
   justify-content: space-between;
   padding: 2rem clamp(1rem, 5vw, 3rem);
   box-shadow: 0px 15px 10px -15px rgba(173, 167, 167, 0.4);
+  background-color: hsl(0deg, 0%, 100%);
 }
 .main__header .main__header__themeSection .main__header__heading {
   font-size: clamp(1rem, 0.8005475rem + 1.3309vw, 2rem);
@@ -90,6 +92,7 @@ body {
   width: 210px;
   font-size: clamp(0.875rem, 0.8333975rem + 0.1849vw, 1rem);
   margin-top: 3rem;
+  position: relative;
 }
 @media (min-width: 992px) {
   .main__header .main__header__searchSection .main__header__dropdownContainer {
@@ -118,7 +121,7 @@ body {
   justify-content: space-evenly;
   width: 100%;
   margin-top: 0.3rem;
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsla(0deg, 0%, 100%, 0.96);
   list-style-type: none;
   border-radius: 5px;
   box-shadow: 0 0 10px 5px rgba(173, 167, 167, 0.1), 0px 15px 10px -15px rgba(173, 167, 167, 0.3);
@@ -127,12 +130,77 @@ body {
   overflow: hidden;
   transition: 0.5s;
   padding-block: 0rem;
+  position: absolute;
 }
 .main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-items li {
   margin-left: 1.5rem;
   display: flex;
   align-items: center;
   font-weight: 600;
+}
+
+.main__section1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem clamp(2rem, 5vw, 3rem);
+  gap: 4rem;
+}
+@media (max-width: 760px) {
+  .main__section1 {
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+  }
+}
+
+.countryContainer {
+  cursor: pointer;
+  width: min(100%, 287px);
+}
+@media (max-width: 760px) {
+  .countryContainer {
+    width: min(100%, 420px) !important;
+  }
+}
+@media (min-width: 700px) and (max-width: 850px) {
+  .countryContainer {
+    width: min(100%, 313px);
+  }
+}
+.countryContainer .countryFlagContainer {
+  width: 100%;
+}
+.countryContainer .countryFlagContainer .countryFlag {
+  display: block;
+  width: 100%;
+  max-height: 243px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.countryContainer .countryDetails {
+  height: 210px;
+  padding: 1.7rem 1.5rem 2.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 0 25px 5px rgba(173, 167, 167, 0.1), 0px 15px 16px -15px rgba(173, 167, 167, 0.3);
+  background-color: hsl(0deg, 0%, 100%);
+}
+.countryContainer .countryDetails .countryName {
+  font-weight: 900;
+  font-size: clamp(1.3rem, 1.233445rem + 0.2958vw, 1.5rem);
+}
+.countryContainer .countryDetails p {
+  font-weight: 400;
+  font-size: 14px;
+}
+.countryContainer .countryDetails p span {
+  font-weight: 600;
+  margin-right: 0.3rem;
 }
 
 .dropdown-hide {
