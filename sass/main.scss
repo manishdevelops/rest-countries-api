@@ -17,7 +17,7 @@
 
 body {
   font-family: 'Nunito Sans', sans-serif;
-  transition: .5s;
+  // transition: .5s;
 }
 
 .main__header {
@@ -101,6 +101,7 @@ body {
         text-align: center;
         border-radius: 5px;
         font-weight: 600;
+        -webkit-tap-highlight-color: transparent;
         .arrow {
           transition: .5s;
           
@@ -118,17 +119,23 @@ body {
         cursor: pointer;
         height: 0px;
         overflow: hidden;
-        transition: .5s;
+        transition: 0s;
         padding-block: 0rem;
         position: absolute;
         z-index: 10;
         -webkit-tap-highlight-color: transparent;
+        @media (min-width:992px) {
+        transition: .5s;
+        }
       
         li {
           margin:0 1.5rem;
           display: flex;
           align-items: center;
           font-weight: 600;
+          &:hover {
+            opacity: .8;
+          }
         }
       }
     }
@@ -151,13 +158,14 @@ body {
     }
 }
 .countryContainer {
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   transition: .3s;
   width: min(100%, 287px);
   @media (max-width:760px) {
     width: min(100%, 420px ) !important;
   }
-  @media (min-width:700px) and (max-width:850px) {
+  @media (min-width:760px) and (max-width:850px) {
     width: min(100%, 313px);
   }
   .countryFlagContainer {
@@ -167,8 +175,13 @@ body {
       object-fit: cover;
       width: 100%;
       max-height: 243px;
+
+      // height: 191px;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
+      @media (min-width:760px) {
+        height: 191px;
+      }
     }
   }
  
@@ -181,6 +194,7 @@ body {
     justify-content: space-evenly;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+
     .countryName {
       font-weight: 900;
       font-size: clamp(1.3rem, 1.233445rem + 0.2958vw, 1.5rem);

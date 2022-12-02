@@ -22,7 +22,7 @@ class App {
   _dropdownToggle() {
     dropdownItems.classList.toggle('dropdown-toggle-desk');
     dropdownItems.classList.toggle('dropdown-items-tab');
-    bodyBlur.classList.add('bg-overlay-tab');
+    bodyBlur.classList.toggle('bg-overlay-tab');
   }
 
   _themeChange() {
@@ -42,7 +42,6 @@ class App {
   }
 
   _generateCountryData() {
-    // console.log("manish");
    async function apiCall() {
     try {
       const url = await fetch('https://restcountries.com/v2/all');
@@ -52,12 +51,9 @@ class App {
       }
 
       const countries = await url.json();
-      // console.log(result)
       countries.forEach( country => {
         app.append_countries(country);
-        // console.log(country);
       });
-      // console.log(result);
     }catch(error) {
       console.log('error');
     }
@@ -71,17 +67,11 @@ class App {
     const population = country.population;
     const region = country.region;
     const capital = country.capital;
-    const flag = country.flag;
-    // console.log(flag)
+    const flag = country.flags['svg'];
+    console.log(flag)
     
-  //   console.log(countryName);
-  //   console.log(population);
-  //   console.log(region);
-  //   console.log(capital);
-
     const addCountry = document.createElement('div');
     addCountry.classList.add('countryContainer');
-    
     addCountry.innerHTML = `
     <div class="countryFlagContainer">
     <img class="countryFlag" src="${flag}" alt="Country flag">
@@ -94,9 +84,6 @@ class App {
     </div>
     `
     countriesContainer.append(addCountry);
-    
-    // const 
-
   }
 
 }

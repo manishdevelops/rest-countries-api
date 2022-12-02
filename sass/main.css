@@ -13,13 +13,13 @@
   background-color: hsl(0deg, 0%, 100%) !important;
 }
 .light-theme .dropdown-btn:active {
-  transform: translateY(-10px);
+  transform: scale(1.1);
   box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
 }
 @media (min-width: 992px) {
   .light-theme .dropdown-btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25) !important;
   }
 }
 .light-theme .dropdown-items {
@@ -32,13 +32,13 @@
   background-color: hsl(0deg, 0%, 100%);
 }
 .light-theme .countryContainer:active {
-  transform: translateY(-10px);
+  transform: scale(1.1);
   box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
 }
 @media (min-width: 992px) {
   .light-theme .countryContainer:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25) !important;
   }
 }
 .light-theme .dropdown-items {
@@ -74,13 +74,13 @@
   background-color: hsl(209deg, 23%, 22%) !important;
 }
 .dark-theme .dropdown-btn:active {
-  transform: translateY(-10px);
+  transform: scale(1.1);
   box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
 }
 @media (min-width: 992px) {
   .dark-theme .dropdown-btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25) !important;
   }
 }
 .dark-theme .dropdown-items {
@@ -93,13 +93,13 @@
   background-color: hsl(209deg, 23%, 22%);
 }
 .dark-theme .countryContainer:active {
-  transform: translateY(-10px);
+  transform: scale(1.1);
   box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
 }
 @media (min-width: 992px) {
   .dark-theme .countryContainer:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25) !important;
   }
 }
 .dark-theme .lightMoon, .dark-theme .searchIcon, .dark-theme .arrowIcon {
@@ -112,15 +112,15 @@
   box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.2) !important;
 }
 .dark-theme ::-moz-placeholder {
-  color: hsl(0deg, 0%, 100%);
+  color: hsla(0deg, 0%, 52%, 0.5);
   font-weight: 400;
 }
 .dark-theme :-ms-input-placeholder {
-  color: hsl(0deg, 0%, 100%);
+  color: hsla(0deg, 0%, 52%, 0.5);
   font-weight: 400;
 }
 .dark-theme ::placeholder {
-  color: hsl(0deg, 0%, 100%);
+  color: hsla(0deg, 0%, 52%, 0.5);
   font-weight: 400;
 }
 
@@ -147,7 +147,6 @@
 
 body {
   font-family: "Nunito Sans", sans-serif;
-  transition: 0.5s;
 }
 
 .main__header .main__header__themeSection {
@@ -226,6 +225,7 @@ body {
   text-align: center;
   border-radius: 5px;
   font-weight: 600;
+  -webkit-tap-highlight-color: transparent;
 }
 .main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-btn .arrow {
   transition: 0.5s;
@@ -241,17 +241,25 @@ body {
   cursor: pointer;
   height: 0px;
   overflow: hidden;
-  transition: 0.5s;
+  transition: 0s;
   padding-block: 0rem;
   position: absolute;
   z-index: 10;
   -webkit-tap-highlight-color: transparent;
+}
+@media (min-width: 992px) {
+  .main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-items {
+    transition: 0.5s;
+  }
 }
 .main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-items li {
   margin: 0 1.5rem;
   display: flex;
   align-items: center;
   font-weight: 600;
+}
+.main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-items li:hover {
+  opacity: 0.8;
 }
 
 .main__section1 {
@@ -271,6 +279,7 @@ body {
 }
 
 .countryContainer {
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   transition: 0.3s;
   width: min(100%, 287px);
@@ -280,7 +289,7 @@ body {
     width: min(100%, 420px) !important;
   }
 }
-@media (min-width: 700px) and (max-width: 850px) {
+@media (min-width: 760px) and (max-width: 850px) {
   .countryContainer {
     width: min(100%, 313px);
   }
@@ -296,6 +305,11 @@ body {
   max-height: 243px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+}
+@media (min-width: 760px) {
+  .countryContainer .countryFlagContainer .countryFlag {
+    height: 191px;
+  }
 }
 .countryContainer .countryDetails {
   height: 210px;
