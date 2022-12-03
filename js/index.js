@@ -8,6 +8,8 @@ const Body = document.querySelector('body');
 const bodyBlur = document.querySelector('.body-blur');
 const inputCountry = document.querySelector('#inputCountry');
 const countriesContainer = document.querySelector('.main__section1');
+// const regionList = document.querySelectorAll('li');
+// console.log(regionList);
 
 class App {
   constructor() {
@@ -16,7 +18,9 @@ class App {
     dropdownBtn.addEventListener('click', this._dropdownToggle);
     themeBtn.addEventListener('click', this._themeChange);
     bodyBlur.addEventListener('click', this._toggleBlurBg);
+    // dropdownItems.addEventListener('click', this._searchByRegion(e));
     // window.addEventListener('scroll', this._removeBlurBg);
+
   }
 
   _dropdownToggle() {
@@ -68,7 +72,7 @@ class App {
     const region = country.region;
     const capital = country.capital;
     const flag = country.flags['svg'];
-    console.log(flag)
+    // console.log(flag)
     
     const addCountry = document.createElement('div');
     addCountry.classList.add('countryContainer');
@@ -84,6 +88,10 @@ class App {
     </div>
     `
     countriesContainer.append(addCountry);
+  }
+
+  _searchByRegion(e) {
+    console.log(e)
   }
 
 }
