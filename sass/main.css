@@ -268,7 +268,7 @@ body {
   }
 }
 .main__header .body-blur {
-  transition: 0.5s;
+  transition: 0.5s all;
 }
 
 .main__section1 {
@@ -373,5 +373,6 @@ body {
     -webkit-backdrop-filter: blur(3px);
             backdrop-filter: blur(3px);
     background-color: rgba(0, 0, 0, 0.6);
+    transition: 0.5s;
   }
 }/*# sourceMappingURL=main.css.map */
