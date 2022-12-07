@@ -8,6 +8,7 @@ const Body = document.querySelector('body');
 const bodyBlur = document.querySelector('.body-blur');
 const inputCountry = document.querySelector('#inputCountry');
 const countriesContainer = document.querySelector('.main__section1');
+const regionList = document.querySelectorAll('.region-list');
 // const regionList = document.querySelectorAll('li');
 // console.log(regionList);
 
@@ -18,7 +19,7 @@ class App {
     dropdownBtn.addEventListener('click', this._dropdownToggle);
     themeBtn.addEventListener('click', this._themeChange);
     bodyBlur.addEventListener('click', this._toggleBlurBg);
-    // dropdownItems.addEventListener('click', this._searchByRegion(e));
+    dropdownItems.addEventListener('click', this._searchByRegion.bind(this));
     // window.addEventListener('scroll', this._removeBlurBg);
 
   }
@@ -91,7 +92,15 @@ class App {
   }
 
   _searchByRegion(e) {
-    console.log(e)
+    // console.log(e)
+    if(e.target.classList.contains('region-list')
+    //  || e.target.classList.contains('checkBox')
+     ) {
+      regionList.forEach( list =>
+       list.children[2].removeAttribute('checked')
+       );
+      e.target.children[2].setAttribute('checked', '');
+    }
   }
 
 }
