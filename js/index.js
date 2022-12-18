@@ -21,7 +21,6 @@ class App {
     bodyBlur.addEventListener('click', this._toggleBlurBg);
     dropdownItems.addEventListener('click', this._searchByRegion.bind(this));
     // window.addEventListener('scroll', this._removeBlurBg);
-
   }
 
   _dropdownToggle() {
@@ -92,15 +91,23 @@ class App {
   }
 
   _searchByRegion(e) {
-    // console.log(e)
-    if(e.target.classList.contains('region-list')
-    //  || e.target.classList.contains('checkBox')
-     ) {
+    console.log(e.target)
+    if(e.target.classList.contains('region-list')) {
       regionList.forEach( list =>
-       list.children[2].removeAttribute('checked')
-       );
-      e.target.children[2].setAttribute('checked', '');
+        list.classList.remove('dropdown-selected'));
+      e.target.classList.add('dropdown-selected');
+      // console.log(2)
+      
+      // e.target.children[2].setAttribute('checked', '');
+       
     }
+    //  else if(e.target.classList.contains('checkBox')) {
+    //   console.log(1)
+    //   regionList.forEach( list =>
+    //     list.children[2].removeAttribute('checked')
+    //     );
+    //    e.target.setAttribute('checked', '');
+    // }
   }
 
 }

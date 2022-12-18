@@ -13,7 +13,7 @@
   background-color: hsl(0deg, 0%, 100%) !important;
 }
 .light-theme .dropdown-btn:active {
-  transform: scale(1.1);
+  transform: scale(1.05);
   box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
 }
 @media (min-width: 992px) {
@@ -32,7 +32,7 @@
   background-color: hsl(0deg, 0%, 100%);
 }
 .light-theme .countryContainer:active {
-  transform: scale(1.1);
+  transform: scale(1.05);
   box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
 }
 @media (min-width: 992px) {
@@ -74,7 +74,7 @@
   background-color: hsl(209deg, 23%, 22%) !important;
 }
 .dark-theme .dropdown-btn:active {
-  transform: scale(1.1);
+  transform: scale(1.05);
   box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
 }
 @media (min-width: 992px) {
@@ -93,7 +93,7 @@
   background-color: hsl(209deg, 23%, 22%);
 }
 .dark-theme .countryContainer:active {
-  transform: scale(1.1);
+  transform: scale(1.05);
   box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
 }
 @media (min-width: 992px) {
@@ -233,7 +233,6 @@ body {
 .main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-items {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   width: 100%;
   margin-top: 0.3rem;
   list-style-type: none;
@@ -253,18 +252,20 @@ body {
   }
 }
 .main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-items li {
-  margin: 0 1.5rem;
+  -webkit-padding-start: 1.5rem;
+          padding-inline-start: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
+  height: 10vh !important;
 }
 .main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-items li:hover {
   opacity: 0.8;
 }
 @media (min-width: 992px) {
-  .main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-items li .checkBox {
-    display: none !important;
+  .main__header .main__header__searchSection .main__header__dropdownContainer .dropdown-items li {
+    height: 41px;
   }
 }
 .main__header .body-blur {
@@ -345,7 +346,6 @@ body {
 
 .dropdown-toggle-desk {
   height: 205px !important;
-  padding-block: 0.7rem !important;
 }
 
 @media (max-width: 992px) {
@@ -358,7 +358,6 @@ body {
 @media (max-width: 992px) {
   .dropdown-items-tab li {
     border-bottom: 1px solid rgba(214, 207, 207, 0.18);
-    padding: 0.7rem 0;
   }
 }
 
@@ -375,4 +374,9 @@ body {
     background-color: rgba(0, 0, 0, 0.6);
     transition: 0.5s;
   }
+}
+
+.dropdown-selected {
+  background: black !important;
+  color: white !important;
 }/*# sourceMappingURL=main.css.map */
