@@ -7,23 +7,30 @@ const themeBtn = document.querySelector('.main__header--themeToggle');
 const Body = document.querySelector('body');
 const bodyBlur = document.querySelector('.body-blur');
 const inputCountry = document.querySelector('#inputCountry');
-const countriesContainer = document.querySelector('.main__section1');
+const countriesSection = document.querySelector('.main__section1');
 const regionList = document.querySelectorAll('.region-list');
 // const regionList = document.querySelectorAll('li');
 // console.log(regionList);
 
 class App {
   constructor() {
-    inputCountry.focus();
     this._generateCountryData();
-    dropdownBtn.addEventListener('click', this._dropdownToggle);
+    dropdownBtn.addEventListener('click', this._dropdownToggle.bind(this));
     themeBtn.addEventListener('click', this._themeChange);
     bodyBlur.addEventListener('click', this._toggleBlurBg);
     dropdownItems.addEventListener('click', this._searchByRegion.bind(this));
+    this._init();
     // window.addEventListener('scroll', this._removeBlurBg);
   }
 
-  _dropdownToggle() {
+  _init() {
+    inputCountry.focus();
+    regionList[0].classList.add('dropdown-selected');
+  }
+
+  _dropdownToggle(e) {
+    // regionList.forEach( list => list.classList.remove('dropdown-selected'));
+    
     dropdownItems.classList.toggle('dropdown-toggle-desk');
     dropdownItems.classList.toggle('dropdown-items-tab');
     bodyBlur.classList.toggle('bg-overlay-tab');
@@ -39,11 +46,11 @@ class App {
     dropdownItems.classList.toggle('dropdown-toggle-desk');
   }
 
-  _removeBlurBg() {
-    bodyBlur.classList.remove('bg-overlay-tab');
-    dropdownItems.classList.remove('dropdown-items-tab');
-    dropdownItems.classList.remove('dropdown-toggle-desk');
-  }
+  // _removeBlurBg() {
+  //   bodyBlur.classList.remove('bg-overlay-tab');
+  //   dropdownItems.classList.remove('dropdown-items-tab');
+  //   dropdownItems.classList.remove('dropdown-toggle-desk');
+  // }
 
   _generateCountryData() {
    async function apiCall() {
@@ -66,14 +73,11 @@ class App {
   }
 
   append_countries(country) {
-    // console.log(country)
     const countryName = country.name;
     const population = country.population;
     const region = country.region;
     const capital = country.capital;
     const flag = country.flags['svg'];
-    // console.log(flag)
-    
     const addCountry = document.createElement('div');
     addCountry.classList.add('countryContainer');
     addCountry.innerHTML = `
@@ -83,23 +87,35 @@ class App {
     <div class="countryDetails">
       <p class="countryName">${countryName}</p>
       <p class="countryPopulation"><span>Population:</span>${population}</p>
-      <p class="countryRegion"><span>Region:</span>${region}</p>
+      <p class="countryRegion"><span>Region:</span><span>${region}</span></p>
       <p class="countryCapital"><span>Capital:</span>${capital}</p>
     </div>
     `
-    countriesContainer.append(addCountry);
+    countriesSection.append(addCountry);
   }
 
   _searchByRegion(e) {
-    console.log(e.target)
+    const countries = document.querySelectorAll('.countryContainer');
+    console.log(countries.length);
+
     if(e.target.classList.contains('region-list')) {
-      regionList.forEach( list =>
-        list.classList.remove('dropdown-selected'));
-      e.target.classList.add('dropdown-selected');
-      // console.log(2)
-      
-      // e.target.children[2].setAttribute('checked', '');
-       
+      regionList.forEach( list => list.classList.remove('dropdown-selected'));
+        e.target.classList.add('dropdown-selected');
+        this._toggleBlurBg();
+        let regionName = e.target.textContent.trim();
+          countries.forEach( country => {
+            const v = country.children[1].children[2].children[1].textContent;
+            if(regionName === 'All') {
+              country.style.display = 'block';
+            }
+            else if(!(regionName === v )) {
+              country.style.display = 'none';
+            }
+            else{
+              country.style.display = 'block';
+            }
+          });
+
     }
     //  else if(e.target.classList.contains('checkBox')) {
     //   console.log(1)

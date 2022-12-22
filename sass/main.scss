@@ -125,7 +125,7 @@ body {
         z-index: 10;
         -webkit-tap-highlight-color: transparent;
         @media (min-width:992px) {
-         transition: .5s;
+         transition: .2s;
         }
       
         li {
@@ -259,7 +259,7 @@ body {
   }
 }
 
-.dropdown-selected {
-  background: black !important;
-    color: white !important;
-}
+// .dropdown-selected {
+//   background: black !important;
+//     color: white !important;
+// }

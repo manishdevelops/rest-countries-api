@@ -20,7 +20,7 @@
   }
 }
 
-@mixin set_themes($Bg-1, $Bg-2) {
+@mixin set_themes($Bg-1, $Bg-2, $dropdown-clr1, $dropdown-clr2) {
 
   .main__header__themeSection {
     background-color: $Bg-2;
@@ -44,12 +44,18 @@
   .countryContainer {
     @include animate();
   }
+  .dropdown-selected {
+    background: $dropdown-clr1 !important;
+    color: $dropdown-clr2 !important;
+  }
+  
  
 }
 
 .light-theme {
   @include set_themes(var.$Very-Light-Gray_Light-Mode-Background,
-  var.$White_Dark-Mode-Text-and-Light-Mode-Elements
+  var.$White_Dark-Mode-Text-and-Light-Mode-Elements,
+  black, white
   );
 
   .dropdown-items {
@@ -68,11 +74,12 @@
 }
 
 .dark-theme {
-  @include set_themes(var.$Very-Dark-Blue_Dark-Mode-Background, 
-  var.$Dark-Blue_Dark-Mode-Elements
+  @include set_themes(var.$Very-Dark-Blue_Dark-Mode-Background,                                                                                                                       
+  var.$Dark-Blue_Dark-Mode-Elements, 
+  white, black
   );
 
-    @include icon_color();
+  @include icon_color();
 
   .dropdown-items {
         background-color: hsl(209, 23%, 22%, .96);
