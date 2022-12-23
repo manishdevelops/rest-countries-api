@@ -9,6 +9,7 @@ const bodyBlur = document.querySelector('.body-blur');
 const inputCountry = document.querySelector('#inputCountry');
 const countriesSection = document.querySelector('.main__section1');
 const regionList = document.querySelectorAll('.region-list');
+const countryNameInput = document.querySelector('#inputCountry');
 // const regionList = document.querySelectorAll('li');
 // console.log(regionList);
 
@@ -18,6 +19,7 @@ class App {
     dropdownBtn.addEventListener('click', this._dropdownToggle.bind(this));
     themeBtn.addEventListener('click', this._themeChange);
     bodyBlur.addEventListener('click', this._toggleBlurBg);
+    countryNameInput.addEventListener('keyup', this._searchByCountryName.bind(this));
     dropdownItems.addEventListener('click', this._searchByRegion.bind(this));
     this._init();
     // window.addEventListener('scroll', this._removeBlurBg);
@@ -94,15 +96,28 @@ class App {
     countriesSection.append(addCountry);
   }
 
+  _searchByCountryName(e) {
+    e.preventDefault();
+    const countryName = countryNameInput.value.trim();
+    const countryNameLength = countryName.length;
+    const countries = document.querySelectorAll('.countryContainer');
+    countries.forEach( country => {
+      const name = country.children[1].children[0].textContent.trim().slice(0,countryNameLength);
+      if(countryName.toLowerCase() === name.toLowerCase())
+        country.style.display = 'block';
+      else
+        country.style.display = 'none';
+    });
+  }
+
   _searchByRegion(e) {
     const countries = document.querySelectorAll('.countryContainer');
-    console.log(countries.length);
-
     if(e.target.classList.contains('region-list')) {
       regionList.forEach( list => list.classList.remove('dropdown-selected'));
         e.target.classList.add('dropdown-selected');
         this._toggleBlurBg();
         let regionName = e.target.textContent.trim();
+        dropdownBtn.textContent = regionName;
           countries.forEach( country => {
             const v = country.children[1].children[2].children[1].textContent;
             if(regionName === 'All') {
