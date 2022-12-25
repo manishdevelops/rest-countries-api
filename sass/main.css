@@ -352,6 +352,35 @@ body {
   margin-right: 0.3rem;
 }
 
+.main__buttonSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: 2rem;
+}
+.main__buttonSection .load-more-btn {
+  all: unset;
+  padding-inline: 2rem;
+  padding-block: 1rem;
+  background-color: #edc6f4;
+  color: #000;
+  cursor: pointer;
+  border-radius: 10px;
+  font-weight: 700;
+  box-shadow: 0px 7px #c2abdc;
+}
+.main__buttonSection .load-more-btn:active {
+  transform: translateY(7px);
+  box-shadow: 0px 0px;
+  transition: 0.1s;
+}
+@media (max-width: 600px) {
+  .main__buttonSection .load-more-btn {
+    padding-inline: 1.5rem;
+    padding-block: 0.8rem;
+  }
+}
+
 .dropdown-toggle-desk {
   height: 205px !important;
 }
@@ -382,4 +411,12 @@ body {
     background-color: rgba(0, 0, 0, 0.6);
     transition: 0.5s;
   }
+}
+
+.error_display_text {
+  color: red;
+  font-weight: 700;
+  margin: auto;
+  margin-top: 20vh;
+  font-size: 1.3rem;
 }/*# sourceMappingURL=main.css.map */

@@ -10,8 +10,11 @@ const inputCountry = document.querySelector('#inputCountry');
 const countriesSection = document.querySelector('.main__section1');
 const regionList = document.querySelectorAll('.region-list');
 const countryNameInput = document.querySelector('#inputCountry');
+const loadMoreBtn = document.querySelector('.load-more-btn');
 // const regionList = document.querySelectorAll('li');
 // console.log(regionList);
+var countries;
+var currIndex = 0;
 
 class App {
   constructor() {
@@ -21,6 +24,7 @@ class App {
     bodyBlur.addEventListener('click', this._toggleBlurBg);
     countryNameInput.addEventListener('keyup', this._searchByCountryName.bind(this));
     dropdownItems.addEventListener('click', this._searchByRegion.bind(this));
+    loadMoreBtn.addEventListener('click', this._displayInitialCountries);
     this._init();
     // window.addEventListener('scroll', this._removeBlurBg);
   }
@@ -63,12 +67,16 @@ class App {
         throw new error(`advice not found(${response.status})`);
       }
 
-      const countries = await url.json();
-      countries.forEach( country => {
-        app.append_countries(country);
-      });
+       countries = await url.json();
+      // countries.forEach( country => {
+      //   app.append_countries(country);
+      // });
+      app._displayInitialCountries();
     }catch(error) {
-      console.log('error');
+      const p = document.createElement('p');
+      p.classList.add('error_display_text');
+      p.textContent = `Something went wrong 🥲🥲🥲 (${error.message}).Try Again!`;
+      countriesSection.append(p);
     }
    } 
    apiCall();
@@ -76,7 +84,7 @@ class App {
 
   append_countries(country) {
     const countryName = country.name;
-    const population = country.population;
+    const population = country.population.toLocaleString('en-US');
     const region = country.region;
     const capital = country.capital;
     const flag = country.flags['svg'];
@@ -94,6 +102,20 @@ class App {
     </div>
     `
     countriesSection.append(addCountry);
+  }
+
+  _displayInitialCountries() {
+    const length = countries.length;
+      for(let i = currIndex; i < length; i++) {
+        app.append_countries(countries[i]);
+        console.log(i);
+        if(i === 27 || i === 55 || i === 83 || i === 111 || i === 139 || i === 167 || i === 195 ||i === 223 ) 
+          break;
+        if(i === 249) {
+          loadMoreBtn.style.display = 'none';
+        }
+      }
+      currIndex += 28;
   }
 
   _searchByCountryName(e) {
@@ -140,7 +162,6 @@ class App {
     //    e.target.setAttribute('checked', '');
     // }
   }
-
 }
 
 const app = new App();
