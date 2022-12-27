@@ -11,8 +11,6 @@ const countriesSection = document.querySelector('.main__section1');
 const regionList = document.querySelectorAll('.region-list');
 const countryNameInput = document.querySelector('#inputCountry');
 const loadMoreBtn = document.querySelector('.load-more-btn');
-// const regionList = document.querySelectorAll('li');
-// console.log(regionList);
 var countries;
 var currIndex = 0;
 
@@ -84,7 +82,7 @@ class App {
    apiCall();
   }
 
-  _append_countries(country) {
+  _appendCountries(country) {
     const countryName = country.name;
     const population = country.population.toLocaleString('en-US');
     const region = country.region;
@@ -115,7 +113,8 @@ class App {
     const countriesContainer = document.querySelectorAll('.countryContainer');
     countriesContainer.forEach( countryContainer => countryContainer.style.display = 'block');
       for(let i = currIndex; i < length; i++) {
-        this._append_countries(countries[i]);
+        console.log(countries[i])
+        this._appendCountries(countries[i]);
         if(i === 27 || i === 55 || i === 83 || i === 111 || i === 139 || i === 167 || i === 195 ||i === 223 ) 
           break;
         if(i === 249) {
@@ -139,6 +138,7 @@ class App {
   _manageActiveRegion() {
     regionList.forEach( list => list.classList.remove('region-active'));
   }
+
   _searchByRegion(e) {
     const countriesContainer = document.querySelectorAll('.countryContainer');
     if(e.target.classList.contains('region-list')) {
