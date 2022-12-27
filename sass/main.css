@@ -248,7 +248,6 @@ body {
   cursor: pointer;
   height: 0px;
   overflow: hidden;
-  transition: 0s;
   padding-block: 0rem;
   position: absolute;
   z-index: 10;
@@ -400,7 +399,6 @@ body {
     -webkit-backdrop-filter: blur(3px);
             backdrop-filter: blur(3px);
     background-color: rgba(0, 0, 0, 0.6);
-    transition: 0.5s;
   }
 }
 

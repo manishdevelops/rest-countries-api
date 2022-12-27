@@ -116,7 +116,6 @@ body {
         cursor: pointer;
         height: 0px;
         overflow: hidden;
-        transition: 0s;
         padding-block: 0rem;
         position: absolute;
         z-index: 10;
@@ -262,7 +261,7 @@ body {
     z-index: 5 ;
     backdrop-filter: blur(3px);
     background-color: rgba(0, 0, 0, 0.6);
-    transition: .5s;
+    // transition: .5s;
   }
 }
 .error_display_text {
