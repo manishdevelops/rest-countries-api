@@ -17,6 +17,9 @@ var countries;
 var currIndex = 0;
 
 class App {
+  // countries;
+  // currIndex = 0;
+
   constructor() {
     this._generateCountryData();
     dropdownBtn.addEventListener('click', this._dropdownToggle.bind(this));
@@ -24,19 +27,17 @@ class App {
     bodyBlur.addEventListener('click', this._toggleBlurBg);
     countryNameInput.addEventListener('keyup', this._searchByCountryName.bind(this));
     dropdownItems.addEventListener('click', this._searchByRegion.bind(this));
-    loadMoreBtn.addEventListener('click', this._displayInitialCountries);
+    loadMoreBtn.addEventListener('click', this._displayInitialCountries.bind(this));
     this._init();
     // window.addEventListener('scroll', this._removeBlurBg);
   }
 
   _init() {
     inputCountry.focus();
-    regionList[0].classList.add('dropdown-selected');
+    regionList[0].classList.add('region-active');
   }
 
   _dropdownToggle(e) {
-    // regionList.forEach( list => list.classList.remove('dropdown-selected'));
-    
     dropdownItems.classList.toggle('dropdown-toggle-desk');
     dropdownItems.classList.toggle('dropdown-items-tab');
     bodyBlur.classList.toggle('bg-overlay-tab');
@@ -77,12 +78,13 @@ class App {
       p.classList.add('error_display_text');
       p.textContent = `Something went wrong 🥲🥲🥲 (${error.message}).Try Again!`;
       countriesSection.append(p);
+      loadMoreBtn.style.display = 'none';
     }
    } 
    apiCall();
   }
 
-  append_countries(country) {
+  _append_countries(country) {
     const countryName = country.name;
     const population = country.population.toLocaleString('en-US');
     const region = country.region;
@@ -104,11 +106,16 @@ class App {
     countriesSection.append(addCountry);
   }
 
-  _displayInitialCountries() {
+  _displayInitialCountries(e) {
+    if(e) {
+      this._manageActiveRegion();
+      regionList[0].classList.add('region-active');
+    }
     const length = countries.length;
+    const countriesContainer = document.querySelectorAll('.countryContainer');
+    countriesContainer.forEach( countryContainer => countryContainer.style.display = 'block');
       for(let i = currIndex; i < length; i++) {
-        app.append_countries(countries[i]);
-        console.log(i);
+        this._append_countries(countries[i]);
         if(i === 27 || i === 55 || i === 83 || i === 111 || i === 139 || i === 167 || i === 195 ||i === 223 ) 
           break;
         if(i === 249) {
@@ -122,45 +129,29 @@ class App {
     e.preventDefault();
     const countryName = countryNameInput.value.trim();
     const countryNameLength = countryName.length;
-    const countries = document.querySelectorAll('.countryContainer');
-    countries.forEach( country => {
-      const name = country.children[1].children[0].textContent.trim().slice(0,countryNameLength);
-      if(countryName.toLowerCase() === name.toLowerCase())
-        country.style.display = 'block';
-      else
-        country.style.display = 'none';
+    const countriesContainer = document.querySelectorAll('.countryContainer');
+    countriesContainer.forEach( countryContainer => {
+      const name = countryContainer.children[1].children[0].textContent.trim().slice(0,countryNameLength);
+      countryName.toLowerCase() === name.toLowerCase() ? countryContainer.style.display = 'block' : countryContainer.style.display = 'none'
     });
   }
 
+  _manageActiveRegion() {
+    regionList.forEach( list => list.classList.remove('region-active'));
+  }
   _searchByRegion(e) {
-    const countries = document.querySelectorAll('.countryContainer');
+    const countriesContainer = document.querySelectorAll('.countryContainer');
     if(e.target.classList.contains('region-list')) {
-      regionList.forEach( list => list.classList.remove('dropdown-selected'));
-        e.target.classList.add('dropdown-selected');
+      this._manageActiveRegion();
+        e.target.classList.add('region-active');
         this._toggleBlurBg();
         let regionName = e.target.textContent.trim();
         dropdownBtn.textContent = regionName;
-          countries.forEach( country => {
-            const v = country.children[1].children[2].children[1].textContent;
-            if(regionName === 'All') {
-              country.style.display = 'block';
-            }
-            else if(!(regionName === v )) {
-              country.style.display = 'none';
-            }
-            else{
-              country.style.display = 'block';
-            }
+          countriesContainer.forEach( countryContainer => {
+            const regName = countryContainer.children[1].children[2].children[1].textContent;
+            ((regionName === 'All') &&  (countryContainer.style.display = 'block')) || (regionName === regName ) && (countryContainer.style.display = 'block') || (countryContainer.style.display = 'none');
           });
-
     }
-    //  else if(e.target.classList.contains('checkBox')) {
-    //   console.log(1)
-    //   regionList.forEach( list =>
-    //     list.children[2].removeAttribute('checked')
-    //     );
-    //    e.target.setAttribute('checked', '');
-    // }
   }
 }
 

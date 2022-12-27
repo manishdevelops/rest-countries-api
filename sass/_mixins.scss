@@ -35,6 +35,10 @@
   .dropdown-items {
     background-color: hsla(0deg, 0%, 100%,.96);
   }
+  .region-active {
+    background: $dropdown-clr1 !important;
+    color: $dropdown-clr2 !important;
+  }
   .countryDetails {
     background-color:$Bg-2;
   }
@@ -44,10 +48,7 @@
   .countryContainer {
     @include animate();
   }
-  .dropdown-selected {
-    background: $dropdown-clr1 !important;
-    color: $dropdown-clr2 !important;
-  }
+  
   
  
 }

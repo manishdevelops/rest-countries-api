@@ -17,7 +17,6 @@
 
 body {
   font-family: 'Nunito Sans', sans-serif;
-  // transition: .5s;
 }
 
 .main__header {
@@ -104,14 +103,12 @@ body {
         -webkit-tap-highlight-color: transparent;
         .arrow {
           transition: .5s;
-          
         }
       }
 
       .dropdown-items {
         display: flex;
         flex-direction: column;
-        // justify-content:space-evenly;
         width: 100%;
         margin-top: .3rem;
         list-style-type: none;
@@ -129,7 +126,6 @@ body {
         }
       
         li {
-          // margin:0 1.5rem;
           padding-inline-start: 1.5rem;
           display: flex;
           align-items: center;
@@ -142,11 +138,6 @@ body {
           @media (min-width:992px) {
             height: 41px;
            }
-          // @media (min-width:992px) {
-          //   .checkBox {
-          //     display: none !important;
-          //   }
-          // }
         }
       }
     }
@@ -176,7 +167,6 @@ body {
   cursor: pointer;
   transition: .3s;
   width: min(100%, 287px);
-  // display: none;
   @media (max-width:760px) {
     width: min(100%, 420px ) !important;
   }
@@ -191,7 +181,6 @@ body {
       object-fit: cover;
       width: 100%;
       max-height: 243px;
-      // height: 191px;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       @media (min-width:760px) {
@@ -233,31 +222,22 @@ body {
 
   .load-more-btn {
     all: unset;
-    padding-inline: 2rem;
-    padding-block: 1rem;
-    background-color: #edc6f4;;
-    color: #000;
+    padding-inline: 1rem;
+    padding-block: 0.6rem;
+    background-color: black;
+    color: white;
     cursor: pointer;
-    border-radius: 10px;
-    font-weight: 700;
-    box-shadow: 0px 7px #c2abdc;
+    border: 1px solid gray;
     &:active {
-      transform: translateY(7px);
-      box-shadow: 0px 0px;
+      scale: 0.9;
       transition: .1s;
-    }
-    @media (max-width:600px) {
-      padding-inline: 1.5rem;
-      padding-block: .8rem;
     }
   }
 }
 
-
 // js
 .dropdown-toggle-desk {
   height: 205px !important;
-  // padding-block: .7rem !important;
 }
 
 .dropdown-items-tab {
@@ -269,8 +249,6 @@ body {
   li {
   @media (max-width:992px) {
     border-bottom: 1px solid rgb(214 207 207 / 18%);
-    // width: calc(100vw - 3rem) !important;
-    // padding: 0.7rem 0;
   }
   }
 }
@@ -287,12 +265,6 @@ body {
     transition: .5s;
   }
 }
-
-// .dropdown-selected {
-//   background: black !important;
-//     color: white !important;
-// }
-
 .error_display_text {
   color: red;
   font-weight: 700;

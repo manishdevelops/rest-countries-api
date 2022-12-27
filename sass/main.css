@@ -25,6 +25,10 @@
 .light-theme .dropdown-items {
   background-color: hsla(0deg, 0%, 100%, 0.96);
 }
+.light-theme .region-active {
+  background: black !important;
+  color: white !important;
+}
 .light-theme .countryDetails {
   background-color: hsl(0deg, 0%, 100%);
 }
@@ -40,10 +44,6 @@
     transform: translateY(-5px);
     box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25) !important;
   }
-}
-.light-theme .dropdown-selected {
-  background: black !important;
-  color: white !important;
 }
 .light-theme .dropdown-items {
   background-color: hsla(0deg, 0%, 100%, 0.96);
@@ -90,6 +90,10 @@
 .dark-theme .dropdown-items {
   background-color: hsla(0deg, 0%, 100%, 0.96);
 }
+.dark-theme .region-active {
+  background: white !important;
+  color: black !important;
+}
 .dark-theme .countryDetails {
   background-color: hsl(209deg, 23%, 22%);
 }
@@ -105,10 +109,6 @@
     transform: translateY(-5px);
     box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25) !important;
   }
-}
-.dark-theme .dropdown-selected {
-  background: white !important;
-  color: black !important;
 }
 .dark-theme .lightMoon, .dark-theme .searchIcon, .dark-theme .arrowIcon {
   fill: white !important;
@@ -360,25 +360,16 @@ body {
 }
 .main__buttonSection .load-more-btn {
   all: unset;
-  padding-inline: 2rem;
-  padding-block: 1rem;
-  background-color: #edc6f4;
-  color: #000;
+  padding-inline: 1rem;
+  padding-block: 0.6rem;
+  background-color: black;
+  color: white;
   cursor: pointer;
-  border-radius: 10px;
-  font-weight: 700;
-  box-shadow: 0px 7px #c2abdc;
+  border: 1px solid gray;
 }
 .main__buttonSection .load-more-btn:active {
-  transform: translateY(7px);
-  box-shadow: 0px 0px;
+  scale: 0.9;
   transition: 0.1s;
-}
-@media (max-width: 600px) {
-  .main__buttonSection .load-more-btn {
-    padding-inline: 1.5rem;
-    padding-block: 0.8rem;
-  }
 }
 
 .dropdown-toggle-desk {
