@@ -213,11 +213,26 @@ body {
   }
 }
 
-.main__buttonSection {
+.main__Section2 {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-block: 2rem;
+
+  .main__blurBg {
+    position: absolute;
+    top: 0;
+    left:0;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .main__loadingText {
+  font-size: 50px;
+  color: rgb(195, 191, 191);
+  position: absolute;
+  top: 45vh;
+  }
 
   .load-more-btn {
     all: unset;
@@ -227,6 +242,7 @@ body {
     color: white;
     cursor: pointer;
     border: 1px solid gray;
+    display: none;
     &:active {
       scale: 0.9;
       transition: .1s;

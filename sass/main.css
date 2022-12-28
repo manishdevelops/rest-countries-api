@@ -351,13 +351,26 @@ body {
   margin-right: 0.3rem;
 }
 
-.main__buttonSection {
+.main__Section2 {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-block: 2rem;
 }
-.main__buttonSection .load-more-btn {
+.main__Section2 .main__blurBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+.main__Section2 .main__loadingText {
+  font-size: 50px;
+  color: rgb(195, 191, 191);
+  position: absolute;
+  top: 45vh;
+}
+.main__Section2 .load-more-btn {
   all: unset;
   padding-inline: 1rem;
   padding-block: 0.6rem;
@@ -365,8 +378,9 @@ body {
   color: white;
   cursor: pointer;
   border: 1px solid gray;
+  display: none;
 }
-.main__buttonSection .load-more-btn:active {
+.main__Section2 .load-more-btn:active {
   scale: 0.9;
   transition: 0.1s;
 }

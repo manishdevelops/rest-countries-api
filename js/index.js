@@ -17,7 +17,6 @@ var currIndex = 0;
 class App {
   // countries;
   // currIndex = 0;
-
   constructor() {
     this._generateCountryData();
     dropdownBtn.addEventListener('click', this._dropdownToggle.bind(this));
@@ -33,6 +32,10 @@ class App {
   _init() {
     inputCountry.focus();
     regionList[0].classList.add('region-active');
+    //load button display
+    setTimeout(function() {
+      loadMoreBtn.style.display = 'block';
+    },3000) 
   }
 
   _dropdownToggle(e) {
@@ -113,7 +116,6 @@ class App {
     const countriesContainer = document.querySelectorAll('.countryContainer');
     countriesContainer.forEach( countryContainer => countryContainer.style.display = 'block');
       for(let i = currIndex; i < length; i++) {
-        console.log(countries[i])
         this._appendCountries(countries[i]);
         if(i === 27 || i === 55 || i === 83 || i === 111 || i === 139 || i === 167 || i === 195 ||i === 223 ) 
           break;
