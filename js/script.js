@@ -28,7 +28,6 @@ class animateApp {
     loadingText.style.opacity = this._scale(load, 0, 100, 1, 0);
     bg.style.backdropFilter = `blur(${this._scale(load, 0, 100, 30, 0)}px)`;
   }
- 
 }
 
 const obj = new animateApp();

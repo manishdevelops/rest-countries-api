@@ -213,6 +213,64 @@ body {
   }
 }
 
+.main__countriesLoaderAnimation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .loader {
+    position: relative;
+  }
+  .loader::after, .loader::before {
+    content: "";
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    border-radius: 50%;
+  }
+  .loader::before {
+    background-color: rgb(231, 114, 114);
+    left: 0;
+    translate: 10px;
+    animation: moveLeft 1s ease infinite;
+  }
+  .loader::after {
+    background-color: lightgreen;
+    right: 0;
+    translate: -10px;
+    animation: moveRight 1s ease infinite;
+  }
+
+  @keyframes moveLeft {
+    0% {
+      translate: 10px;
+    }
+
+    50% {
+      translate: -10px;
+      background-color: rgb(231, 114, 114,0.5);
+    }
+
+    100% {
+      translate: 10px;
+    }
+  }
+  @keyframes moveRight {
+    0% {
+      translate: -10px;
+    }
+
+    50% {
+      translate: 10px;
+      background-color: rgb(144, 238, 144,.5);
+    }
+
+    100% {
+      translate: -10px;
+    }
+  }
+}
+
 .main__Section2 {
   display: flex;
   justify-content: center;

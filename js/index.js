@@ -11,12 +11,10 @@ const countriesSection = document.querySelector('.main__section1');
 const regionList = document.querySelectorAll('.region-list');
 const countryNameInput = document.querySelector('#inputCountry');
 const loadMoreBtn = document.querySelector('.load-more-btn');
-var countries;
-var currIndex = 0;
+let countriesContainer;
 
 class App {
-  // countries;
-  // currIndex = 0;
+  _currIndex = 0;
   constructor() {
     this._generateCountryData();
     dropdownBtn.addEventListener('click', this._dropdownToggle.bind(this));
@@ -27,6 +25,7 @@ class App {
     loadMoreBtn.addEventListener('click', this._displayInitialCountries.bind(this));
     this._init();
     // window.addEventListener('scroll', this._removeBlurBg);
+    
   }
 
   _init() {
@@ -34,8 +33,8 @@ class App {
     regionList[0].classList.add('region-active');
     //load button display
     setTimeout(function() {
-      loadMoreBtn.style.display = 'block';
-    },3000) 
+      app._setLoadMoreBtn('block');
+    }, 3000) 
   }
 
   _dropdownToggle(e) {
@@ -69,17 +68,17 @@ class App {
         throw new error(`advice not found(${response.status})`);
       }
 
-       countries = await url.json();
-      // countries.forEach( country => {
-      //   app.append_countries(country);
-      // });
+       const countries = await url.json();
+       countries.forEach( country => {
+          app._appendCountries(country);
+      });
       app._displayInitialCountries();
     }catch(error) {
       const p = document.createElement('p');
       p.classList.add('error_display_text');
       p.textContent = `Something went wrong 🥲🥲🥲 (${error.message}).Try Again!`;
       countriesSection.append(p);
-      loadMoreBtn.style.display = 'none';
+      this._setLoadMoreBtn('none');
     }
    } 
    apiCall();
@@ -104,37 +103,82 @@ class App {
       <p class="countryCapital"><span>Capital:</span>${capital}</p>
     </div>
     `
+    addCountry.style.display = 'none';
     countriesSection.append(addCountry);
   }
 
+  _selectAllCountries() {
+    countriesContainer = document.querySelectorAll('.countryContainer');
+  }
+
+  _setLoadMoreBtn(val) {
+    loadMoreBtn.style.display = val;
+
+  }
+
+  _displayTotalLoadedCountries() {
+    this._selectAllCountries();
+    for(let i = 0; i < this._currIndex; i++) {
+      countriesContainer[i].style.display = 'block';
+    }
+  }
+
+  _displayCountriesTillCurrentIndex() {
+    for(let i = this._currIndex; i < 250; i++) {
+      countriesContainer[i].style.display = 'block';
+      if(i === 27 || i === 55 || i === 83 || i === 111 || i === 139 || i === 167 || i === 195 ||i === 223 ) {
+        break;
+      }
+      console.log(i);
+      if(i === 249) {
+        this._setLoadMoreBtn('none');
+      }
+    }
+    this._currIndex += 28;
+  }
+
   _displayInitialCountries(e) {
+    this._selectAllCountries();
     if(e) {
+      this._setLoadMoreBtn('none');
       this._manageActiveRegion();
       regionList[0].classList.add('region-active');
+      this._displayTotalLoadedCountries();
+      dropdownBtn.textContent = 'Filter by Region';
+      const divParent = document.createElement('div');
+      divParent.classList.add('main__countriesLoaderAnimation');
+      const divChild = document.createElement('div');
+      divChild.classList.add('loader');
+      divChild.classList.add('load');
+      divParent.append(divChild);
+      countriesSection.append(divParent);
+      setTimeout(() => {
+        this._displayCountriesTillCurrentIndex();
+        divParent.remove();
+        (this._currIndex < 249) && (this._setLoadMoreBtn('block'));
+
+      }, 2000);
+      return;
     }
-    const length = countries.length;
-    const countriesContainer = document.querySelectorAll('.countryContainer');
-    countriesContainer.forEach( countryContainer => countryContainer.style.display = 'block');
-      for(let i = currIndex; i < length; i++) {
-        this._appendCountries(countries[i]);
-        if(i === 27 || i === 55 || i === 83 || i === 111 || i === 139 || i === 167 || i === 195 ||i === 223 ) 
-          break;
-        if(i === 249) {
-          loadMoreBtn.style.display = 'none';
-        }
-      }
-      currIndex += 28;
+    this._displayCountriesTillCurrentIndex();
   }
 
   _searchByCountryName(e) {
-    e.preventDefault();
+    this._setLoadMoreBtn('none');
     const countryName = countryNameInput.value.trim();
     const countryNameLength = countryName.length;
-    const countriesContainer = document.querySelectorAll('.countryContainer');
+    this._selectAllCountries();
     countriesContainer.forEach( countryContainer => {
       const name = countryContainer.children[1].children[0].textContent.trim().slice(0,countryNameLength);
-      countryName.toLowerCase() === name.toLowerCase() ? countryContainer.style.display = 'block' : countryContainer.style.display = 'none'
+      countryName.toLowerCase() === name.toLowerCase() ? countryContainer.style.display = 'block' : countryContainer.style.display = 'none';
     });
+
+    if(countryName === '') {
+      countriesContainer.forEach( countryContainer => { countryContainer.style.display = 'none' });
+      this._displayTotalLoadedCountries();
+      this._setLoadMoreBtn('block');
+    }
+   
   }
 
   _manageActiveRegion() {
@@ -142,17 +186,16 @@ class App {
   }
 
   _searchByRegion(e) {
-    const countriesContainer = document.querySelectorAll('.countryContainer');
     if(e.target.classList.contains('region-list')) {
       this._manageActiveRegion();
-        e.target.classList.add('region-active');
-        this._toggleBlurBg();
-        let regionName = e.target.textContent.trim();
-        dropdownBtn.textContent = regionName;
-          countriesContainer.forEach( countryContainer => {
-            const regName = countryContainer.children[1].children[2].children[1].textContent;
-            ((regionName === 'All') &&  (countryContainer.style.display = 'block')) || (regionName === regName ) && (countryContainer.style.display = 'block') || (countryContainer.style.display = 'none');
-          });
+      e.target.classList.add('region-active');
+      this._toggleBlurBg();
+      let regionName = e.target.textContent.trim();
+      dropdownBtn.textContent = regionName;
+      for(let  i = 0; i < this._currIndex; i++) {
+        const regName = countriesContainer[i].children[1].children[2].children[1].textContent;
+        ((regionName === 'All') &&  (countriesContainer[i].style.display = 'block')) || (regionName === regName ) && (countriesContainer[i].style.display = 'block') || (countriesContainer[i].style.display = 'none');
+      }
     }
   }
 }
