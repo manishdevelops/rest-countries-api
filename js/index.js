@@ -113,7 +113,6 @@ class App {
 
   _setLoadMoreBtn(val) {
     loadMoreBtn.style.display = val;
-
   }
 
   _displayTotalLoadedCountries() {
@@ -129,10 +128,7 @@ class App {
       if(i === 27 || i === 55 || i === 83 || i === 111 || i === 139 || i === 167 || i === 195 ||i === 223 ) {
         break;
       }
-      console.log(i);
-      if(i === 249) {
-        this._setLoadMoreBtn('none');
-      }
+      (i === 249) && ( this._setLoadMoreBtn('none'));
     }
     this._currIndex += 28;
   }
@@ -177,8 +173,10 @@ class App {
       countriesContainer.forEach( countryContainer => { countryContainer.style.display = 'none' });
       this._displayTotalLoadedCountries();
       this._setLoadMoreBtn('block');
+      dropdownBtn.textContent = 'Filter by Region';
+      this._manageActiveRegion();
+      regionList[0].classList.add('region-active');
     }
-   
   }
 
   _manageActiveRegion() {
@@ -187,6 +185,8 @@ class App {
 
   _searchByRegion(e) {
     if(e.target.classList.contains('region-list')) {
+      (inputCountry.value.length > 0) && (countriesContainer.forEach( country => country.style.display = 'none'));
+      (inputCountry.value.length > 0)  && (this._setLoadMoreBtn('block'));
       this._manageActiveRegion();
       e.target.classList.add('region-active');
       this._toggleBlurBg();
