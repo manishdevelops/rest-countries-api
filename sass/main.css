@@ -500,4 +500,11 @@ body {
   margin: auto;
   margin-top: 20vh;
   font-size: 1.3rem;
+}
+
+@media (max-width: 767px) {
+  .country--hidden {
+    opacity: 0;
+    transform: translateY(8rem);
+  }
 }/*# sourceMappingURL=main.css.map */

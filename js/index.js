@@ -25,16 +25,38 @@ class App {
     loadMoreBtn.addEventListener('click', this._displayInitialCountries.bind(this));
     this._init();
     // window.addEventListener('scroll', this._removeBlurBg);
-    
   }
 
   _init() {
-    inputCountry.focus();
     regionList[0].classList.add('region-active');
     //load button display
     setTimeout(function() {
       app._setLoadMoreBtn('block');
-    }, 3000) 
+    }, 3000);
+    
+    setTimeout(function() {
+      app._revealingCountries();
+    }, 3000);
+  }
+
+  _revealingCountries() {
+    const revealCountry = function(entries, observer) {
+      const [entry] = entries;
+      console.log(entry);
+      if(!entry.isIntersecting) return;
+      entry.target.classList.remove('country--hidden');
+      observer.unobserve(entry.target);
+    }
+    const countryObserver = new IntersectionObserver(revealCountry, {
+      root:null,
+      threshold:.15,
+     
+    });
+    this._selectAllCountries();
+    countriesContainer.forEach(function (country) {
+      countryObserver.observe(country);
+      country.classList.add('country--hidden');
+    });
   }
 
   _dropdownToggle(e) {
@@ -105,6 +127,7 @@ class App {
     `
     addCountry.style.display = 'none';
     countriesSection.append(addCountry);
+    console.log('aa');
   }
 
   _selectAllCountries() {

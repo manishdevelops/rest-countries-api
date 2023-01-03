@@ -345,3 +345,10 @@ body {
   margin-top: 20vh;
   font-size: 1.3rem;
 }
+
+.country--hidden {
+  @media (max-width: 767px) {
+    opacity: 0;
+    transform: translateY(8rem);
+  }
+}
