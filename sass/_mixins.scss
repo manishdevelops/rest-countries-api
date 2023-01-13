@@ -19,7 +19,7 @@
   }
 }
 
-@mixin set_themes($Bg-1, $Bg-2, $dropdown-clr1, $dropdown-clr2) {
+@mixin set_themes($Bg-1, $Bg-2, $dropdown-clr1, $dropdown-clr2, $loadMorebtnClr) {
 
   .main__header__themeSection {
     background-color: $Bg-2;
@@ -47,12 +47,15 @@
   .countryContainer {
     @include animate();
   }
+  .load-more-btn {
+    color: $loadMorebtnClr;
+  }
 }
 
 .light-theme {
   @include set_themes(var.$Very-Light-Gray_Light-Mode-Background,
   var.$White_Dark-Mode-Text-and-Light-Mode-Elements,
-  black, white
+  black, white, black
   );
 
   .dropdown-items {
@@ -73,7 +76,7 @@
 .dark-theme {
   @include set_themes(var.$Very-Dark-Blue_Dark-Mode-Background,                                                                                                                       
   var.$Dark-Blue_Dark-Mode-Elements, 
-  white, black
+  white, black, white
   );
 
   @include icon_color();
