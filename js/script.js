@@ -7,7 +7,7 @@ class animateApp {
   _load = 0;
   _interval = 0;
   constructor() {
-     this._interval = setInterval(() => this._blurring(), 20);
+     this._interval = setInterval(() => this._blurring(), 40);
   }
 
   _scale(number, inMin, inMax, outMin, outMax) {

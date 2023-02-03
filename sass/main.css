@@ -26,7 +26,7 @@
   background-color: hsla(0deg, 0%, 100%, 0.96);
 }
 .light-theme .region-active {
-  background: black !important;
+  background: rgba(3, 169, 244, 0.8117647059) !important;
   color: white !important;
 }
 .light-theme .countryDetails {
@@ -476,14 +476,14 @@ body {
   transition: 0.3s;
   display: block;
   width: 100%;
-  height: 3px;
+  height: 2px;
   background-color: red;
 }
 .main__Section2 .load-more-btn:hover::after {
   content: "";
   display: block;
   width: 0%;
-  height: 3px;
+  height: 2px;
   background-color: red;
 }
 

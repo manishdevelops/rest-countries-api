@@ -50,7 +50,6 @@ class App {
     const countryObserver = new IntersectionObserver(revealCountry, {
       root:null,
       threshold:.15,
-     
     });
     this._selectAllCountries();
     countriesContainer.forEach(function (country) {
@@ -85,11 +84,9 @@ class App {
    async function apiCall() {
     try {
       const url = await fetch('https://restcountries.com/v2/all');
-
       if(!url.ok) {
         throw new error(`advice not found(${response.status})`);
       }
-
        const countries = await url.json();
        countries.forEach( country => {
           app._appendCountries(country);
@@ -127,7 +124,6 @@ class App {
     `
     addCountry.style.display = 'none';
     countriesSection.append(addCountry);
-    console.log('aa');
   }
 
   _selectAllCountries() {
