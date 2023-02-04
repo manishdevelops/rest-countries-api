@@ -24,6 +24,7 @@ class App {
     dropdownItems.addEventListener('click', this._searchByRegion.bind(this));
     loadMoreBtn.addEventListener('click', this._displayInitialCountries.bind(this));
     this._init();
+    countriesSection.addEventListener('click', this._detailPage.bind(this));
     // window.addEventListener('scroll', this._removeBlurBg);
   }
 
@@ -32,7 +33,7 @@ class App {
     //load button display
     setTimeout(function() {
       app._setLoadMoreBtn('block');
-    }, 3000);
+    }, 3500);
     
     setTimeout(function() {
       app._revealingCountries();
@@ -42,7 +43,7 @@ class App {
   _revealingCountries() {
     const revealCountry = function(entries, observer) {
       const [entry] = entries;
-      console.log(entry);
+      // console.log(entry);
       if(!entry.isIntersecting) return;
       entry.target.classList.remove('country--hidden');
       observer.unobserve(entry.target);
@@ -97,7 +98,9 @@ class App {
       p.classList.add('error_display_text');
       p.textContent = `Something went wrong 🥲🥲🥲 (${error.message}).Try Again!`;
       countriesSection.append(p);
-      this._setLoadMoreBtn('none');
+      setTimeout(() => {
+        app._setLoadMoreBtn('none');
+      }, 3500);
     }
    } 
    apiCall();
@@ -186,6 +189,7 @@ class App {
     countriesContainer.forEach( countryContainer => {
       const name = countryContainer.children[1].children[0].textContent.trim().slice(0,countryNameLength);
       countryName.toLowerCase() === name.toLowerCase() ? countryContainer.style.display = 'block' : countryContainer.style.display = 'none';
+      dropdownBtn.textContent = 'Filter by Region';
     });
 
     if(countryName === '') {
@@ -216,6 +220,10 @@ class App {
         ((regionName === 'All') &&  (countriesContainer[i].style.display = 'block')) || (regionName === regName ) && (countriesContainer[i].style.display = 'block') || (countriesContainer[i].style.display = 'none');
       }
     }
+  }
+  _detailPage(e) {
+    const a = e.target.parentNode
+    console.log(a.closest('.countryContainer').children[1].children[0].textContent)
   }
 }
 

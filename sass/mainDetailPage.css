@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.detail__header__themeSection {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.7rem clamp(1rem, 5vw, 3rem);
+  box-shadow: 0 0 10px 5px rgba(173, 167, 167, 0.1), 0px 15px 10px -15px rgba(173, 167, 167, 0.3) !important;
+}
+.detail__header__themeSection .detail__header__heading {
+  font-size: clamp(1rem, 0.8005475rem + 1.3309vw, 2rem);
+}
+.detail__header__themeSection .detail__header--themeToggle {
+  all: unset;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+.detail__header__themeSection .detail__header--themeToggle .moon {
+  margin-right: 0.5rem;
+}
+
+.detail__backBtn {
+  margin-block: 2rem;
+  -webkit-margin-start: 2rem;
+          margin-inline-start: 2rem;
+}
+.detail__backBtn .backBtn {
+  all: unset;
+  width: 85px;
+  height: 35px;
+  -webkit-padding-end: 1rem;
+          padding-inline-end: 1rem;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+.detail__backBtn .backBtn .arrow-back {
+  width: 30% !important;
+}
+
+.detail__country {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 7vw;
+  font-size: clamp(0.875rem, 0.8333975rem + 0.1849vw, 1rem);
+}
+@media (min-width: 992px) {
+  .detail__country {
+    flex-direction: row;
+  }
+}
+.detail__country .detail__countryFlag .country-flag {
+  width: 100%;
+}
+.detail__country .detail__country1, .detail__country .detail__country2 {
+  line-height: 2.5;
+  text-align: start;
+  width: 100%;
+}
+.detail__country .detail__country1 p :first-child, .detail__country .detail__country2 p :first-child {
+  font-weight: 600;
+}
+.detail__country .detail__country1 .countryName, .detail__country .detail__country2 .countryName {
+  font-size: 1.7rem;
+  font-weight: 900;
+}/*# sourceMappingURL=mainDetailPage.css.map */
