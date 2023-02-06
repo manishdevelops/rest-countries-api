@@ -31,13 +31,13 @@ class App {
   _init() {
     regionList[0].classList.add('region-active');
     //load button display
-    setTimeout(function() {
-      app._setLoadMoreBtn('block');
-    }, 3500);
+    // setTimeout(function() {
+    //   app._setLoadMoreBtn('block');
+    // }, 3500);
     
-    setTimeout(function() {
-      app._revealingCountries();
-    }, 3000);
+    // setTimeout(function() {
+      // app._revealingCountries();
+    // }, 3000);
   }
 
   _revealingCountries() {
@@ -93,14 +93,16 @@ class App {
           app._appendCountries(country);
       });
       app._displayInitialCountries();
+      app._setLoadMoreBtn('block');
+      app._revealingCountries();
     }catch(error) {
       const p = document.createElement('p');
       p.classList.add('error_display_text');
       p.textContent = `Something went wrong 🥲🥲🥲 (${error.message}).Try Again!`;
       countriesSection.append(p);
-      setTimeout(() => {
+      // setTimeout(() => {
         app._setLoadMoreBtn('none');
-      }, 3500);
+      // }, 3500);
     }
    } 
    apiCall();
