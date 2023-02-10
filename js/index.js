@@ -16,6 +16,7 @@ let countriesContainer;
 class App {
   _currIndex = 0;
   constructor() {
+    this._renderSpinner();
     this._generateCountryData();
     dropdownBtn.addEventListener('click', this._dropdownToggle.bind(this));
     themeBtn.addEventListener('click', this._themeChange);
@@ -23,22 +24,23 @@ class App {
     countryNameInput.addEventListener('keyup', this._searchByCountryName.bind(this));
     dropdownItems.addEventListener('click', this._searchByRegion.bind(this));
     loadMoreBtn.addEventListener('click', this._displayInitialCountries.bind(this));
+
+    // countriesSection.addEventListener('click', this._preventAnchorClick.bind(this));
+
     this._init();
-    countriesSection.addEventListener('click', this._detailPage.bind(this));
+
+    // countriesSection.addEventListener('click', this._detailPage.bind(this));
     // window.addEventListener('scroll', this._removeBlurBg);
   }
-
   _init() {
     regionList[0].classList.add('region-active');
-    //load button display
-    // setTimeout(function() {
-    //   app._setLoadMoreBtn('block');
-    // }, 3500);
-    
-    // setTimeout(function() {
-      // app._revealingCountries();
-    // }, 3000);
   }
+  // _preventAnchorClick(e) {
+  //   const clicked = e.target.closest('.country');
+  //   if(!clicked) return;
+  //   clicked.classList.contains('country');
+  //   e.preventDefault();
+  // }
 
   _revealingCountries() {
     const revealCountry = function(entries, observer) {
@@ -80,6 +82,14 @@ class App {
   //   dropdownItems.classList.remove('dropdown-items-tab');
   //   dropdownItems.classList.remove('dropdown-toggle-desk');
   // }
+  _renderSpinner() {
+    const spinner = `
+    <div class="spinnerContainer">
+      <i class='spinner bx bx-loader bx-spin' ></i>
+    </div>
+    `
+    countriesSection.insertAdjacentHTML('afterbegin', spinner);
+  }
 
   _generateCountryData() {
    async function apiCall() {
@@ -89,20 +99,19 @@ class App {
         throw new error(`advice not found(${response.status})`);
       }
        const countries = await url.json();
+       countriesSection.innerHTML='';
        countries.forEach( country => {
           app._appendCountries(country);
       });
       app._displayInitialCountries();
-      app._setLoadMoreBtn('block');
       app._revealingCountries();
+      app._setLoadMoreBtn('block');
     }catch(error) {
       const p = document.createElement('p');
       p.classList.add('error_display_text');
       p.textContent = `Something went wrong 🥲🥲🥲 (${error.message}).Try Again!`;
       countriesSection.append(p);
-      // setTimeout(() => {
-        app._setLoadMoreBtn('none');
-      // }, 3500);
+      app._setLoadMoreBtn('none');
     }
    } 
    apiCall();
@@ -114,20 +123,22 @@ class App {
     const region = country.region;
     const capital = country.capital;
     const flag = country.flags['svg'];
-    const addCountry = document.createElement('div');
-    addCountry.classList.add('countryContainer');
+    const addCountry = document.createElement('a');
+    addCountry.classList.add('country');
+    addCountry.setAttribute('href', `#${countryName}`);
     addCountry.innerHTML = `
-    <div class="countryFlagContainer">
-    <img class="countryFlag" src="${flag}" alt="Country flag">
-  </div>
-    <div class="countryDetails">
-      <p class="countryName">${countryName}</p>
-      <p class="countryPopulation"><span>Population:</span>${population}</p>
-      <p class="countryRegion"><span>Region:</span><span>${region}</span></p>
-      <p class="countryCapital"><span>Capital:</span>${capital}</p>
+    <div class="countryContainer" style="display:none">
+      <div class="countryFlagContainer">
+        <img class="countryFlag" src="${flag}" alt="Country flag">
+      </div>
+      <div class="countryDetails">
+        <p class="countryName">${countryName}</p>
+        <p class="countryPopulation"><span>Population:</span>${population}</p>
+        <p class="countryRegion"><span>Region:</span><span>${region}</span></p>
+        <p class="countryCapital"><span>Capital:</span>${capital}</p>
+      </div>
     </div>
     `
-    addCountry.style.display = 'none';
     countriesSection.append(addCountry);
   }
 
@@ -136,6 +147,7 @@ class App {
   }
 
   _setLoadMoreBtn(val) {
+    console.log('a');
     loadMoreBtn.style.display = val;
   }
 
@@ -223,10 +235,10 @@ class App {
       }
     }
   }
-  _detailPage(e) {
-    const a = e.target.parentNode
-    console.log(a.closest('.countryContainer').children[1].children[0].textContent)
-  }
+  // _detailPage(e) {
+  //   const a = e.target.parentNode
+  //   console.log(a.closest('.countryContainer').children[1].children[0].textContent)
+  // }
 }
 
 const app = new App();

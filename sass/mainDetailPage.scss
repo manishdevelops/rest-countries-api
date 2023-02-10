@@ -35,7 +35,7 @@ body {
   }
 }
 .detail__backBtn {
-  margin-block: 5vw;
+  margin-block: 6vh 9vh;
   margin-inline: 7vw;
   .backBtn {
     all: unset;
@@ -92,12 +92,14 @@ body {
  
   .detail__country-info2 {
     padding-block-start: 5vh;
+    @media (min-width:992px) {
+    margin-inline-start: 1rem;
+     }
   }
  .detail__country-info1, .detail__country-info2 {
    line-height: 2.5;
    @media (min-width:992px) {
     line-height: 2;
-    margin-inline-start: 1rem;
    }
   
     p :first-child {

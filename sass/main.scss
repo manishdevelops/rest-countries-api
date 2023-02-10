@@ -165,7 +165,26 @@ body {
       justify-content: center;
       gap: 3rem;
     }
+    a {
+      all: unset;
+      display: contents;
+    }
+    .spinnerContainer {
+      position: absolute;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: calc(100% - clamp(2rem, 5vw, 3rem));;
+      height: 100vh;
+      backdrop-filter: blur(1px);
+      .spinner {
+        font-size: 3.5rem;
+      }
+    }
+   
 }
+
 .countryContainer {
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
@@ -281,21 +300,6 @@ body {
   justify-content: center;
   align-items: center;
   margin-block: 2rem;
-
-  .main__blurBg {
-    position: absolute;
-    top: 0;
-    left:0;
-    height: 100vh;
-    width: 100vw;
-  }
-
-  .main__loadingText {
-    font-size: 50px;
-    color: rgb(195, 191, 191);
-    position: absolute;
-    top: 45vh;
-  }
 
   .load-more-btn {
     all: unset;
